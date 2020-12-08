@@ -1,4 +1,4 @@
-import { SET_NEW_TODO, SET_COMPLETED, SET_NEW_TODO_ITEM } from "../actions/index";
+import { SET_NEW_TODO, SET_COMPLETED, SET_NEW_TODO_ITEM, SET_CLEAR_COMPLETED } from "../actions/index";
 
 export const initialState = {
     todo: [
@@ -23,14 +23,11 @@ const reducer = (state, action) => {
                 }]
             });
         case (SET_COMPLETED):
-            // console.log(state.todo);
             return ({
                 ...state, todo:
                     state.todo.map((item) => {
-                        console.log(item.completed);
-                        // console.log(!item.completed);
                         if (item.id === action.id) {
-                            return ({...item, completed: !item.completed});
+                            return ({ ...item, completed: !item.completed });
                         } else {
                             return (item);
                         }
@@ -38,6 +35,13 @@ const reducer = (state, action) => {
             });
         case (SET_NEW_TODO_ITEM):
             return ({ ...state, newTodoItem: action.payload });
+        case (SET_CLEAR_COMPLETED):
+            return ({
+                ...state, todo:
+                    state.todo.filter(item => {
+                        return item.completed === false;
+                    })
+            });
         default:
             return (state);
     }

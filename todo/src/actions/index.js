@@ -14,3 +14,7 @@ export const setCompleted = (id) => {
 export const setNewTodoItem = (todoItem) => {
     return ({ type: SET_NEW_TODO_ITEM, payload: todoItem });
 }
+
+export const setClearCompleted = (todo) => {
+    return ({ type: SET_CLEAR_COMPLETED, payload: todo });
+}

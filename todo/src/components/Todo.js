@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import reducer, { initialState } from "../reducers/index";
 
-import { setNewTodo, setCompleted, setNewTodoItem } from "../actions/index";
+import { setNewTodo, setCompleted, setNewTodoItem, setClearCompleted } from "../actions/index";
 
 import "./todo.css";
 
@@ -24,7 +24,7 @@ const Todo = () => {
     }
 
     const clearCompleted = () => {
-        
+        dispatch(setClearCompleted(state.todo));
     }
 
     return (
@@ -50,6 +50,7 @@ const Todo = () => {
                     />
                     <button>Add an item</button>
                 </form>
+                <button onClick={clearCompleted}>Clear completed tasks</button>
             </div>
         </div>
     )
